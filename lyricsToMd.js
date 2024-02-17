@@ -19,15 +19,16 @@ fs.readFile(lyricsFile, 'utf8', function (err, data) {
         lyricsMd += (splitLines ? splitLongLine(lyrics[i]) : lyrics[i]) + "\n"
     }
 
-    var output = `## ${mdTitle}
-- This is a test
- ` + duplicate(lyricsMd, mdTitle);
-    fs.writeFile("./output/" + mdTitle + ".md", output, function (err) {
-        if (err) {
-            return console.log(err);
-        }
-    });
-    console.log();
+    var output = duplicate(lyricsMd, mdTitle);
+    fs.mkdir('./output', { recursive: true }, (err) => {
+        if (err) throw err;
+        fs.writeFile("./output/" + mdTitle + ".md", output, function (err) {
+            if (err) {
+                return console.log(err);
+            }
+            console.log("Success - wrote to output folder");
+        });
+      });
 });
 function duplicate(formatted, hymnTitle) {
     lines = formatted.split("\n");
