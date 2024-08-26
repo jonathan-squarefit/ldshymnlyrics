@@ -1,6 +1,6 @@
 fs = require('fs');
 lyricsFile = process.argv[2];
-var mdTitle = lyricsFile.replace("\ ", " ").split(".")[0].replace("childrenssongbook/","").replace("_", " ");
+var mdTitle = lyricsFile.replace("\ ", " ").split(".")[0].replace("childrenssongbook/","").replace("HymnsForHomeAndChurch/", "").replace("hymns/", "").replace("_", " ");
 console.log(mdTitle)
 var splitLines = false;
 if(process.argv[3]?.startsWith("t") ) {
